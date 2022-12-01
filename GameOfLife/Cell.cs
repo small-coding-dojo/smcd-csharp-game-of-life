@@ -2,27 +2,17 @@ namespace GameOfLife
 {
     public class Cell
     {
-        private bool _cellLiveness;
-        private static Cell _ourCell = new Cell();
+        private readonly bool _isAlive;
 
-        public Cell()
+        public Cell(bool isAlive = true)
         {
-            _cellLiveness = false;
+            _isAlive = isAlive;
         }
 
-        public static Cell At(int i, int i1)
+        public bool IsAlive()
         {
-            return _ourCell;
+            return _isAlive;
         }
 
-        public bool IsDead()
-        {
-            return !_cellLiveness;
-        }
-
-        public void Live()
-        {
-            _cellLiveness = true;
-        }
     }
 }

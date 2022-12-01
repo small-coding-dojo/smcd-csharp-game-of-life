@@ -5,40 +5,61 @@ namespace GameOfLife.Tests
 {
     public class CellTest
     {
+  
         [Fact]
-        public void LoneCellIsDead()
+        public void TestThereIsACell()
         {
-            Assert.True(Cell.At(0,0).IsDead());
+            // Given
+            // nothing
+
+            // When
+            Cell cell = new Cell();
+
+            // Then
+            Assert.NotNull(cell);
         }
 
-        /*[Fact]
-         
-        // Ideas: Split Cell into World and Cell 
-        public void CellIsBorn()
+        [Fact]
+        public void TestTheCellIsAlive()
         {
-            Assert.True(Cell.At(1,1).IsDead());
-            // Three outer cells are alive
-            Cell.At(0, 0).Live();
-            Cell.At(0, 1).Live();
-            Cell.At(0, 2).Live();
-            
-            Cell.At(1, 0).Die();
-            Cell.At(1, 2).Die();
-            
-            Cell.At(2, 0).Die();
-            Cell.At(2, 1).Die();
-            Cell.At(2, 2).Die();
-            // middle cell should get alive now
-            Cell.Generation();
-            Assert.False(Cell.At(1,1).IsDead());
-        }*/
+            // Given
+            Cell cell = new Cell(true);
+
+            // When
+            // always
+        
+            // Then
+            Assert.True(cell.IsAlive());
+        }
         
         [Fact]
-        public void CellHandlesBirthCorrectly()
+        public void TestTheCellIsDead()
         {
-            Assert.True(Cell.At(0,0).IsDead());
-            Cell.At(0,0).Live();
-            Assert.False(Cell.At(0,0).IsDead());
+            // Given
+            Cell deadCell = new Cell(false);
+
+            // When
+            // always
+        
+            // Then
+            Assert.False(deadCell.IsAlive());
         }
+        
+        [Fact]
+        public void TestTheCellIsAliveByDefault()
+        {
+            // Given
+            Cell cell = new Cell();
+
+            // When
+            // always
+        
+            // Then
+            Assert.True(cell.IsAlive());
+        }
+
+        
+        
+        
     }
 }
