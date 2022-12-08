@@ -83,5 +83,23 @@ namespace GameOfLife.Tests
             // Then
             Assert.False(actual.IsAlive());
         }
+        
+        [Theory]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        public void TestSecondRuleForFourNeighbours(int numberOfAliveNeighbors)
+        {
+            // Given
+            Cell cell = new Cell(true);
+
+            // When
+            Cell actual = Universe.GetNextIncarnation(cell, numberOfAliveNeighbors);
+        
+            // Then
+            Assert.False(actual.IsAlive());
+        }
     }
 }
