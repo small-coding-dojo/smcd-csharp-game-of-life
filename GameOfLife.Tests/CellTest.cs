@@ -58,8 +58,30 @@ namespace GameOfLife.Tests
             Assert.True(cell.IsAlive());
         }
 
+        [Fact]
+        public void TestFirstRuleForNoLivingNeighbors()
+        {
+            // Given
+            Cell cell = new Cell(true);
+
+            // When
+            Cell actual = Universe.GetNextIncarnation(cell, 0);
         
+            // Then
+            Assert.False(actual.IsAlive());
+        }
+
+        [Fact]
+        public void TestFirstRuleForOneLivingNeighbor()
+        {
+            // Given
+            Cell cell = new Cell(true);
+
+            // When
+            Cell actual = Universe.GetNextIncarnation(cell, 1);
         
-        
+            // Then
+            Assert.False(actual.IsAlive());
+        }
     }
 }
