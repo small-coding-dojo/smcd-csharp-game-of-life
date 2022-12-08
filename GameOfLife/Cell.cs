@@ -4,7 +4,7 @@ namespace GameOfLife
     {
         private readonly bool _isAlive;
 
-        public Cell(bool isAlive = true)
+        public Cell(bool isAlive)
         {
             _isAlive = isAlive;
         }

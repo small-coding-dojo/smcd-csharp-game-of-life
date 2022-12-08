@@ -13,7 +13,7 @@ namespace GameOfLife.Tests
             // nothing
 
             // When
-            Cell cell = new Cell();
+            Cell cell = new Cell(true);
 
             // Then
             Assert.NotNull(cell);
@@ -49,7 +49,7 @@ namespace GameOfLife.Tests
         public void TestTheCellIsAliveByDefault()
         {
             // Given
-            Cell cell = new Cell();
+            Cell cell = new Cell(true);
 
             // When
             // always
