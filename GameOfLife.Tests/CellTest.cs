@@ -5,7 +5,8 @@ namespace GameOfLife.Tests
 {
     public class CellTest
     {
-  
+        private static Cell _aliveCell;
+
         [Fact]
         public void TestThereIsACell()
         {
@@ -23,13 +24,13 @@ namespace GameOfLife.Tests
         public void TestTheCellIsAlive()
         {
             // Given
-            Cell cell = new Cell(true);
+            _aliveCell = new Cell(true);
 
             // When
             // always
         
             // Then
-            Assert.True(cell.IsAlive());
+            Assert.True(_aliveCell.IsAlive());
         }
         
         [Fact]
@@ -49,36 +50,25 @@ namespace GameOfLife.Tests
         public void TestTheCellIsAliveByDefault()
         {
             // Given
-            Cell cell = new Cell(true);
+            Cell aliveCell = new Cell(true);
 
             // When
             // always
         
             // Then
-            Assert.True(cell.IsAlive());
+            Assert.True(aliveCell.IsAlive());
         }
 
-        [Fact]
-        public void TestFirstRuleForNoLivingNeighbors()
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        public void RuleNumberOne(int numberOfAliveNeighbors)
         {
             // Given
-            Cell cell = new Cell(true);
+            Cell aliveCell = new Cell(true);
 
             // When
-            Cell actual = Universe.GetNextIncarnation(cell, 0);
-        
-            // Then
-            Assert.False(actual.IsAlive());
-        }
-
-        [Fact]
-        public void TestFirstRuleForOneLivingNeighbor()
-        {
-            // Given
-            Cell cell = new Cell(true);
-
-            // When
-            Cell actual = Universe.GetNextIncarnation(cell, 1);
+            Cell actual = Universe.GetNextIncarnation(aliveCell, numberOfAliveNeighbors);
         
             // Then
             Assert.False(actual.IsAlive());
@@ -90,13 +80,13 @@ namespace GameOfLife.Tests
         [InlineData(6)]
         [InlineData(7)]
         [InlineData(8)]
-        public void TestSecondRuleForFourNeighbours(int numberOfAliveNeighbors)
+        public void RuleNumberTwo(int numberOfAliveNeighbors)
         {
             // Given
-            Cell cell = new Cell(true);
+            Cell aliveCell = new Cell(true);
 
             // When
-            Cell actual = Universe.GetNextIncarnation(cell, numberOfAliveNeighbors);
+            Cell actual = Universe.GetNextIncarnation(aliveCell, numberOfAliveNeighbors);
         
             // Then
             Assert.False(actual.IsAlive());
