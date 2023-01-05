@@ -51,5 +51,16 @@ namespace GameOfLife.Tests
             // Then
             Assert.False(actual.IsAlive());
         }
+
+        [Theory(DisplayName = "Any live cell with two or three live neighbours lives on to the next generation.")]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void Rule2_AliveCellWillStillLiveWithTwoOrThreeNeighbors(int numberOfAliveNeighbors)
+        {
+            Cell actual = Universe.GetNextIncarnation(_aliveCell, numberOfAliveNeighbors);
+
+            // Then
+            Assert.True(actual.IsAlive());
+        }
     }
 }
