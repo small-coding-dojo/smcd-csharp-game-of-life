@@ -5,18 +5,16 @@ namespace GameOfLife.Tests
 {
     public class CellTest
     {
-        private static Cell _aliveCell;
+        private Cell _aliveCell;
+
+        public CellTest () 
+        {
+            _aliveCell = new Cell(true);
+        }
 
         [Fact]
         public void TheCellIsAlive()
         {
-            // Given
-            _aliveCell = new Cell(true);
-
-            // When
-            // always
-        
-            // Then
             Assert.True(_aliveCell.IsAlive());
         }
         
@@ -38,11 +36,7 @@ namespace GameOfLife.Tests
         [InlineData(1)]
         public void Rule1_DiesWithFewerThanTwoAliveNeighbors(int numberOfAliveNeighbors)
         {
-            // Given
-            Cell aliveCell = new Cell(true);
-
-            // When
-            Cell actual = Universe.GetNextIncarnation(aliveCell, numberOfAliveNeighbors);
+            Cell actual = Universe.GetNextIncarnation(_aliveCell, numberOfAliveNeighbors);
         
             // Then
             Assert.False(actual.IsAlive());
@@ -56,11 +50,7 @@ namespace GameOfLife.Tests
         [InlineData(8)]
         public void Rule3_DiesWithMoreThanThreeNeighbors(int numberOfAliveNeighbors)
         {
-            // Given
-            Cell aliveCell = new Cell(true);
-
-            // When
-            Cell actual = Universe.GetNextIncarnation(aliveCell, numberOfAliveNeighbors);
+            Cell actual = Universe.GetNextIncarnation(_aliveCell, numberOfAliveNeighbors);
         
             // Then
             Assert.False(actual.IsAlive());
