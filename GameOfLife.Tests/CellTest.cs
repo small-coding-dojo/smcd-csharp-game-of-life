@@ -16,13 +16,13 @@ namespace GameOfLife.Tests
         }
 
         [Fact]
-        public void TheCellIsAlive()
+        public void Invariant_FreshlyCreatedAliveCellIsReallyAlive()
         {
             Assert.True(_aliveCell.IsAlive());
         }
         
         [Fact]
-        public void TheCellIsDead()
+        public void Invariant_FreshlyCreatedDeadCellIsReallyDead()
         {
             Assert.False(_deadCell.IsAlive());
         }
