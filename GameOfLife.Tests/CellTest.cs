@@ -5,11 +5,14 @@ namespace GameOfLife.Tests
 {
     public class CellTest
     {
-        private Cell _aliveCell;
+        private readonly Cell _aliveCell;
+        private readonly Cell _deadCell;
 
         public CellTest () 
         {
             _aliveCell = new Cell(true);
+            _deadCell = new Cell(false);
+
         }
 
         [Fact]
@@ -21,14 +24,7 @@ namespace GameOfLife.Tests
         [Fact]
         public void TheCellIsDead()
         {
-            // Given
-            Cell deadCell = new Cell(false);
-
-            // When
-            // always
-        
-            // Then
-            Assert.False(deadCell.IsAlive());
+            Assert.False(_deadCell.IsAlive());
         }
 
         [Theory(DisplayName = "Any live cell with fewer than two live neighbours dies, as if by underpopulation.")]
