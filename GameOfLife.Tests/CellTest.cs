@@ -32,7 +32,7 @@ namespace GameOfLife.Tests
         [InlineData(1)]
         public void Rule1_DiesWithFewerThanTwoAliveNeighbors(int numberOfAliveNeighbors)
         {
-            Cell actual = Universe.GetNextIncarnation(_aliveCell, numberOfAliveNeighbors);
+            Cell actual = _aliveCell.GetNextIncarnation(numberOfAliveNeighbors);
         
             // Then
             Assert.False(actual.IsAlive());
@@ -46,7 +46,7 @@ namespace GameOfLife.Tests
         [InlineData(8)]
         public void Rule3_DiesWithMoreThanThreeNeighbors(int numberOfAliveNeighbors)
         {
-            Cell actual = Universe.GetNextIncarnation(_aliveCell, numberOfAliveNeighbors);
+            Cell actual = _aliveCell.GetNextIncarnation(numberOfAliveNeighbors);
         
             // Then
             Assert.False(actual.IsAlive());
@@ -57,7 +57,7 @@ namespace GameOfLife.Tests
         [InlineData(3)]
         public void Rule2_AliveCellWillStillLiveWithTwoOrThreeNeighbors(int numberOfAliveNeighbors)
         {
-            Cell actual = Universe.GetNextIncarnation(_aliveCell, numberOfAliveNeighbors);
+             Cell actual = _aliveCell.GetNextIncarnation(numberOfAliveNeighbors);
 
             // Then
             Assert.True(actual.IsAlive());
