@@ -16,7 +16,7 @@ namespace GameOfLife
 
         public bool WillBeAliveInNextIncarnation(int numberOfAliveNeighbors)
         {
-            return numberOfAliveNeighbors == 2 || numberOfAliveNeighbors == 3;
+            return _isAlive && (numberOfAliveNeighbors == 2 || numberOfAliveNeighbors == 3);
         }
     }
 }
