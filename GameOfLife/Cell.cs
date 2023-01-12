@@ -14,12 +14,9 @@ namespace GameOfLife
             return _isAlive;
         }
 
-        public Cell GetNextIncarnation(int numberOfAliveNeighbors)
+        public bool WillBeAliveInNextIncarnation(int numberOfAliveNeighbors)
         {
-            if ( numberOfAliveNeighbors == 2 || numberOfAliveNeighbors == 3) 
-                return new Cell(true);
-            return new Cell(false);
+            return numberOfAliveNeighbors == 2 || numberOfAliveNeighbors == 3;
         }
-
     }
 }

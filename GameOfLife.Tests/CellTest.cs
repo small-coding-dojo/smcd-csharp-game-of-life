@@ -32,10 +32,7 @@ namespace GameOfLife.Tests
         [InlineData(1)]
         public void Rule1_DiesWithFewerThanTwoAliveNeighbors(int numberOfAliveNeighbors)
         {
-            Cell actual = _aliveCell.GetNextIncarnation(numberOfAliveNeighbors);
-        
-            // Then
-            Assert.False(actual.IsAlive());
+            Assert.False(_aliveCell.WillBeAliveInNextIncarnation(numberOfAliveNeighbors));
         }
         
         [Theory(DisplayName = "Any live cell with more than three live neighbours dies, as if by overpopulation.")]
@@ -46,10 +43,7 @@ namespace GameOfLife.Tests
         [InlineData(8)]
         public void Rule3_DiesWithMoreThanThreeNeighbors(int numberOfAliveNeighbors)
         {
-            Cell actual = _aliveCell.GetNextIncarnation(numberOfAliveNeighbors);
-        
-            // Then
-            Assert.False(actual.IsAlive());
+            Assert.False(_aliveCell.WillBeAliveInNextIncarnation(numberOfAliveNeighbors));
         }
 
         [Theory(DisplayName = "Any live cell with two or three live neighbours lives on to the next generation.")]
@@ -57,10 +51,7 @@ namespace GameOfLife.Tests
         [InlineData(3)]
         public void Rule2_AliveCellWillStillLiveWithTwoOrThreeNeighbors(int numberOfAliveNeighbors)
         {
-             Cell actual = _aliveCell.GetNextIncarnation(numberOfAliveNeighbors);
-
-            // Then
-            Assert.True(actual.IsAlive());
+            Assert.True(_aliveCell.WillBeAliveInNextIncarnation(numberOfAliveNeighbors));
         }
     }
 }
