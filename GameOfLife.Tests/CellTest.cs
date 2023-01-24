@@ -54,10 +54,16 @@ namespace GameOfLife.Tests
             Assert.True(_aliveCell.WillBeAliveInNextIncarnation(numberOfAliveNeighbors));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Any dead cell will stay dead unless rule #4 applies.")]
         public void Rule5_DeadCellWillStayDeadWithTwoNeighbors()
         {
             Assert.False(_deadCell.WillBeAliveInNextIncarnation(2));
+        }
+        
+        [Fact(DisplayName = "Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.")]
+        public void Rule4_DeadCellWillComeAliveWithExactlyThreeNeighbors()
+        {
+            Assert.True(_deadCell.WillBeAliveInNextIncarnation(3));
         }
         
     }
