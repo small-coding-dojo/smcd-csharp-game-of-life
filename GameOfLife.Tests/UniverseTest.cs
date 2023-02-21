@@ -31,4 +31,12 @@ public class UniverseTest
         var universe = new UniverseAdapter(1, 1, false);
         Assert.Equal(false, universe.cellAt00.IsAlive());
     }
+    
+    [Fact]
+    public void OneIterationWithSingleAliveCell()
+    {
+        var universe = new UniverseAdapter(1, 1, true);
+        universe.Iterate();
+        Assert.Equal(false, universe.cellAt00.IsAlive());
+    }
 }
