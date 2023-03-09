@@ -1,3 +1,4 @@
+using System.Diagnostics.Metrics;
 using Xunit;
 
 namespace GameOfLife.Tests;
@@ -14,6 +15,11 @@ public class UniverseTest
         public int CellsLength => Cells.Length;
 
         public Cell CellAt(int row, int column) => Cells[row, column];
+
+        public int GetLivingNeighbors(int row, int column)
+        {
+            return CountLivingNeighbors(row, column);
+        }
     }
 
     [Fact]
@@ -57,5 +63,15 @@ public class UniverseTest
         Assert.Equal(2, universe.CellsLength);
         Assert.True(universe.CellAt(0, 0).IsAlive());
         Assert.True(universe.CellAt(0, 1).IsAlive());
+    }
+
+    [Theory]
+    [InlineData(2, 1, 0, 0)]
+    [InlineData(2, 1, 1, 0)]
+    public void CountNeighborsForSingleCellIn2x1AliveCells(int rows, int columns, int rowOfTestedCell, int columnOfTestedCell)
+    {
+        var universe = new UniverseAdapter(rows, columns, true);
+        var actual = universe.GetLivingNeighbors(rowOfTestedCell, columnOfTestedCell);
+        Assert.Equal(1, actual);
     }
 }

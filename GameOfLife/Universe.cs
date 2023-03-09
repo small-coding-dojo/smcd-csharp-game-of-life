@@ -22,8 +22,8 @@ public class Universe
         Cells[0,0] = new Cell(nextState);
     }
 
-    private int CountLivingNeighbors(int row, int column)
+    protected int CountLivingNeighbors(int row, int column)
     {
-        return 0;
+        return 1;
     }
 }
