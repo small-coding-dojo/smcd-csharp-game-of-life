@@ -20,6 +20,8 @@ public class UniverseTest
         {
             return CountLivingNeighbors(row, column);
         }
+
+        public void MakeAlive(int row, int column) => base.MakeAlive(row,column);
     }
 
     [Fact]
@@ -73,5 +75,48 @@ public class UniverseTest
         var universe = new UniverseAdapter(rows, columns, true);
         var actual = universe.GetLivingNeighbors(rowOfTestedCell, columnOfTestedCell);
         Assert.Equal(1, actual);
+    }
+
+    [Fact]
+    public void CountNeighborsForCenterCellIn3x3DeadCells()
+    {
+        var universe = new UniverseAdapter(3, 3, false);
+        var actual = universe.GetLivingNeighbors(1, 1);
+        Assert.Equal(0, actual);
+    }   
+    
+    [Theory]
+    [InlineData(0,0)]
+    [InlineData(0,1)]
+    [InlineData(0,2)]
+    [InlineData(1,0)]
+    [InlineData(1,2)]
+    [InlineData(2,0)]
+    [InlineData(2,1)]
+    [InlineData(2,2)]
+    public void CountNeighborsForCenterCellIn3x3WithOneAliveCell(int row, int column)
+    {
+        var universe = new UniverseAdapter(3, 3, false);
+        universe.MakeAlive(row,column);
+        var actual = universe.GetLivingNeighbors(1, 1);
+        Assert.Equal(1, actual);
+    }
+
+    [Fact]
+    public void CountNeighborsForCenterCellIn3x3WithOnlyCenterCellAlive()
+    {
+        var universe = new UniverseAdapter(3, 3, false);
+        universe.MakeAlive(1,1);
+        var actual = universe.GetLivingNeighbors(1, 1);
+        Assert.Equal(0, actual);
+    }
+
+
+    [Fact]
+    public void MakeCellAlive()
+    {
+        var universe = new UniverseAdapter(1, 1, false);
+        universe.MakeAlive(0, 0);
+        Assert.True(universe.CellAt(0, 0).IsAlive());
     }
 }
