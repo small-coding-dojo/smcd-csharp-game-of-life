@@ -101,6 +101,31 @@ public class UniverseTest
         var actual = universe.GetLivingNeighbors(1, 1);
         Assert.Equal(1, actual);
     }
+    
+    [Theory]
+    [InlineData(0,1)]
+    [InlineData(0,2)]
+    [InlineData(1,0)]
+    [InlineData(1,2)]
+    [InlineData(2,0)]
+    [InlineData(2,1)]
+    [InlineData(2,2)]
+    public void CountNeighborsForCenterCellIn3x3WithTwoAliveCells(int row, int column)
+    {
+        var universe = new UniverseAdapter(3, 3, false);
+        universe.MakeAlive(row,column);
+        universe.MakeAlive(0,0);
+        var actual = universe.GetLivingNeighbors(1, 1);
+        Assert.Equal(2, actual);
+    }
+
+    [Fact]
+    public void CountNeighborsForCenterCellIn3x3WithAllAliveCells()
+    {
+        var universe = new UniverseAdapter(3, 3, true);
+        var actual = universe.GetLivingNeighbors(1, 1);
+        Assert.Equal(8,actual);
+    }
 
     [Fact]
     public void CountNeighborsForCenterCellIn3x3WithOnlyCenterCellAlive()
