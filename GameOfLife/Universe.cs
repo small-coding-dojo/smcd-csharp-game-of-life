@@ -32,16 +32,18 @@ public class Universe
 
     protected int CountLivingNeighbors(int row, int column)
     {
-        if (row != 1 || column != 1)
-        {
-            return 1;
-        }
-        
         var counter = 0;
 
         foreach (var (rowNeighbor, columnNeighbor) in coordinateOfNeighbor)
         {
-            counter += Cells[rowNeighbor, columnNeighbor].IsAlive() ? 1 : 0;
+            var rowToCheck = row + (rowNeighbor - 1);
+            var columnToCheck = column + (columnNeighbor - 1);
+            
+            if (rowToCheck >= 0 && columnToCheck >= 0
+                && rowToCheck < Cells.GetLength(0) && columnToCheck < Cells.GetLength(1))
+            {
+                counter += Cells[rowToCheck, columnToCheck].IsAlive() ? 1 : 0;
+            }
         }
 
         return counter;

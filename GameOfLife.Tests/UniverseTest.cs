@@ -144,4 +144,16 @@ public class UniverseTest
         universe.MakeAlive(0, 0);
         Assert.True(universe.CellAt(0, 0).IsAlive());
     }
+    
+    [Theory]
+    [InlineData(0,0)]
+    public void CountNeighborsForRightCenterCellIn3x4WithNoAliveCells(int row, int column)
+    {
+        var universe = new UniverseAdapter(3, 4, false);
+        universe.MakeAlive(row,column);
+        var actual = universe.GetLivingNeighbors(1, 2);
+        Assert.Equal(0, actual);
+    }
+    
+    
 }
