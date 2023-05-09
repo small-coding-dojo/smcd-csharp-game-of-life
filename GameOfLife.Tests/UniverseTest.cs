@@ -1,4 +1,3 @@
-using System.Diagnostics.Metrics;
 using Xunit;
 
 namespace GameOfLife.Tests;
@@ -68,11 +67,11 @@ public class UniverseTest
     }
 
     [Theory]
-    [InlineData(2, 1, 0, 0)]
-    [InlineData(2, 1, 1, 0)]
-    public void CountNeighborsForSingleCellIn2x1AliveCells(int rows, int columns, int rowOfTestedCell, int columnOfTestedCell)
+    [InlineData(0, 0)]
+    [InlineData(1, 0)]
+    public void CountNeighborsForSingleCellIn2x1AliveCells(int rowOfTestedCell, int columnOfTestedCell)
     {
-        var universe = new UniverseAdapter(rows, columns, true);
+        var universe = new UniverseAdapter(2, 1, true);
         var actual = universe.GetLivingNeighbors(rowOfTestedCell, columnOfTestedCell);
         Assert.Equal(1, actual);
     }
@@ -94,10 +93,10 @@ public class UniverseTest
     [InlineData(2,0)]
     [InlineData(2,1)]
     [InlineData(2,2)]
-    public void CountNeighborsForCenterCellIn3x3WithOneAliveCell(int row, int column)
+    public void CountNeighborsForCenterCellIn3x3WithOneAliveCell(int rowOfAliveCell, int columnOfAliveCell)
     {
         var universe = new UniverseAdapter(3, 3, false);
-        universe.MakeAlive(row,column);
+        universe.MakeAlive(rowOfAliveCell,columnOfAliveCell);
         var actual = universe.GetLivingNeighbors(1, 1);
         Assert.Equal(1, actual);
     }
@@ -110,10 +109,10 @@ public class UniverseTest
     [InlineData(2,0)]
     [InlineData(2,1)]
     [InlineData(2,2)]
-    public void CountNeighborsForCenterCellIn3x3WithTwoAliveCells(int row, int column)
+    public void CountNeighborsForCenterCellIn3x3WithTwoAliveCells(int rowOfAliveCell, int columnOfAliveCell)
     {
         var universe = new UniverseAdapter(3, 3, false);
-        universe.MakeAlive(row,column);
+        universe.MakeAlive(rowOfAliveCell,columnOfAliveCell);
         universe.MakeAlive(0,0);
         var actual = universe.GetLivingNeighbors(1, 1);
         Assert.Equal(2, actual);
@@ -146,13 +145,28 @@ public class UniverseTest
     }
     
     [Theory]
-    [InlineData(0,0)]
-    public void CountNeighborsForRightCenterCellIn3x4WithNoAliveCells(int row, int column)
+    [InlineData(0,0,0)]
+    [InlineData(1,0,0)]
+    [InlineData(2,0,0)]
+    [InlineData(2,2,1)]
+    public void CountNeighborsForRightCenterCellIn3x4WithNoAliveCells(int rowOfAliveCell, int columnOfAliveCell, int expected)
     {
         var universe = new UniverseAdapter(3, 4, false);
-        universe.MakeAlive(row,column);
+        universe.MakeAlive(rowOfAliveCell, columnOfAliveCell);
         var actual = universe.GetLivingNeighbors(1, 2);
-        Assert.Equal(0, actual);
+        Assert.Equal(expected, actual);
+    }
+
+    [Theory]
+    [InlineData(0,0)]
+    [InlineData(0,1)]
+    [InlineData(1,0)]
+    [InlineData(1,1)]
+    public void CountNeigborsOfCornerCellWith3AliveCells(int rowOfInterest, int columnOfInterest)
+    {
+        var universe = new UniverseAdapter(2, 2, true);
+        var actual = universe.GetLivingNeighbors(rowOfInterest, columnOfInterest);
+        Assert.Equal(3, actual);
     }
     
     
