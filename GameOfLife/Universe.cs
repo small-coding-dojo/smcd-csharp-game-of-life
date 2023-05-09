@@ -5,19 +5,21 @@ namespace GameOfLife;
 public class Universe
 {
     protected readonly Cell[,] Cells;
+
+    // csharpier-ignore
     protected List<(int, int)> coordinateOfNeighbor = new List<(int, int)>()
     {
         (0,0), (0,1), (0,2),
         (1,0),        (1,2),
         (2,0), (2,1), (2,2)
-    }; 
-    
+    };
+
     public Universe(int rows, int columns, bool cellsAliveAtInitialization)
     {
         Cells = new Cell[rows, columns];
         for (var row = 0; row < rows; row++)
         {
-            for (var column=0; column < columns; column++)
+            for (var column = 0; column < columns; column++)
             {
                 Cells[row, column] = new Cell(cellsAliveAtInitialization);
             }
@@ -26,8 +28,8 @@ public class Universe
 
     public void Iterate()
     {
-        bool nextState = Cells[0, 0].WillBeAliveInNextIncarnation(CountLivingNeighbors(0,0));
-        Cells[0,0] = new Cell(nextState);
+        bool nextState = Cells[0, 0].WillBeAliveInNextIncarnation(CountLivingNeighbors(0, 0));
+        Cells[0, 0] = new Cell(nextState);
     }
 
     protected int CountLivingNeighbors(int row, int column)
@@ -38,9 +40,13 @@ public class Universe
         {
             var rowToCheck = row + (rowNeighbor - 1);
             var columnToCheck = column + (columnNeighbor - 1);
-            
-            if (rowToCheck >= 0 && columnToCheck >= 0
-                && rowToCheck < Cells.GetLength(0) && columnToCheck < Cells.GetLength(1))
+
+            if (
+                rowToCheck >= 0
+                && columnToCheck >= 0
+                && rowToCheck < Cells.GetLength(0)
+                && columnToCheck < Cells.GetLength(1)
+            )
             {
                 counter += Cells[rowToCheck, columnToCheck].IsAlive() ? 1 : 0;
             }
@@ -53,6 +59,4 @@ public class Universe
     {
         Cells[row, column] = new Cell(true);
     }
-    
-
 }

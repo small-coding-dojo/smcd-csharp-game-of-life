@@ -19,8 +19,8 @@ namespace GameOfLife
             if (numberOfAliveNeighbors == 3)
             {
                 return true;
-            } 
-            else 
+            }
+            else
             {
                 return _isAlive && (numberOfAliveNeighbors == 2 || numberOfAliveNeighbors == 3);
             }
