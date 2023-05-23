@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 
 namespace GameOfLife;
 
@@ -8,7 +7,7 @@ public class Universe
     protected readonly Cell[,] Cells;
 
     // csharpier-ignore
-    private List<(int, int)> relativeCoordinateOfNeighbor = new ()
+    private readonly List<(int, int)> relativeCoordinateOfNeighbor = new ()
     {
         (-1, -1), (-1, 0), (-1, 1),
         ( 0, -1),          ( 0, 1),
