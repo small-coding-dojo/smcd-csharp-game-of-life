@@ -37,23 +37,26 @@ public class Universe
     {
         var counter = 0;
 
-        foreach (var (rowNeighbor, columnNeighbor) in relativeCoordinateOfNeighbor)
+        foreach ((var rowNeighbor, var columnNeighbor) in relativeCoordinateOfNeighbor)
         {
             var rowToCheck = row + rowNeighbor;
             var columnToCheck = column + columnNeighbor;
 
-            if (
-                rowToCheck >= 0
-                && columnToCheck >= 0
-                && rowToCheck < Cells.GetLength(0)
-                && columnToCheck < Cells.GetLength(1)
-            )
+            if (IsCellInUniverse(rowToCheck, columnToCheck))
             {
                 counter += Cells[rowToCheck, columnToCheck].IsAlive() ? 1 : 0;
             }
         }
 
         return counter;
+    }
+
+    private bool IsCellInUniverse(int rowToCheck, int columnToCheck)
+    {
+        return rowToCheck >= 0
+            && columnToCheck >= 0
+            && rowToCheck < Cells.GetLength(0)
+            && columnToCheck < Cells.GetLength(1);
     }
 
     protected void MakeAlive(int row, int column)
