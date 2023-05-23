@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GameOfLife;
 
@@ -7,11 +8,11 @@ public class Universe
     protected readonly Cell[,] Cells;
 
     // csharpier-ignore
-    protected List<(int, int)> coordinateOfNeighbor = new List<(int, int)>()
+    private List<(int, int)> relativeCoordinateOfNeighbor = new ()
     {
-        (0,0), (0,1), (0,2),
-        (1,0),        (1,2),
-        (2,0), (2,1), (2,2)
+        (-1, -1), (-1, 0), (-1, 1),
+        ( 0, -1),          ( 0, 1),
+        ( 1, -1), ( 1, 0), ( 1, 1)
     };
 
     public Universe(int rows, int columns, bool cellsAliveAtInitialization)
@@ -36,10 +37,10 @@ public class Universe
     {
         var counter = 0;
 
-        foreach (var (rowNeighbor, columnNeighbor) in coordinateOfNeighbor)
+        foreach (var (rowNeighbor, columnNeighbor) in relativeCoordinateOfNeighbor)
         {
-            var rowToCheck = row + (rowNeighbor - 1);
-            var columnToCheck = column + (columnNeighbor - 1);
+            var rowToCheck = row + rowNeighbor;
+            var columnToCheck = column + columnNeighbor;
 
             if (
                 rowToCheck >= 0
