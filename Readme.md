@@ -18,6 +18,14 @@
 4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 5. Any dead cell will stay dead unless rule #4 applies
 
+## Design decisions and current state of affairs
+
+- Every rule is applied on cell level.
+- The knowledge of the cells status is on the cell itself (alive / dead).
+- Counting living cells is a key responsibility of the universe.
+
+This has been verified on 2023-07-10 18:00.
+
 ## Links
  - https://playgameoflife.com/
  - https://kata-log.rocks/game-of-life-kata
