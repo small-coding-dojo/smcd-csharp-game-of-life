@@ -13,10 +13,8 @@ public class UniverseTest
 
         public Cell CellAt(int row, int column) => Cells[row, column];
 
-        public int GetLivingNeighbors(int row, int column)
-        {
-            return CountLivingNeighbors(row, column);
-        }
+        public int GetLivingNeighbors(int row, int column) =>
+            CountLivingNeighbors(row, column);
 
         public void MakeAlive(int row, int column) => base.MakeAlive(row, column);
     }
