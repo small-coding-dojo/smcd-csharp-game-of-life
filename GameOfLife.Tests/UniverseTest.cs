@@ -172,7 +172,10 @@ public class UniverseTest
     [InlineData(0, 1)]
     [InlineData(1, 0)]
     [InlineData(1, 1)]
-    public void CountLivingNeighborsOfCornerCellWith3AliveCells(int rowOfInterest, int columnOfInterest)
+    public void CountLivingNeighborsOfCornerCellWith3AliveCells(
+        int rowOfInterest,
+        int columnOfInterest
+    )
     {
         var universe = new UniverseAdapter(2, 2, true);
         var actual = universe.GetLivingNeighbors(rowOfInterest, columnOfInterest);
