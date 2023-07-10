@@ -78,7 +78,7 @@ public class UniverseTest
     }
 
     [Fact]
-    public void CountNeighborsForCenterCellIn3x3DeadCells()
+    public void CountLivingNeighborsForCenterCellIn3x3DeadCells()
     {
         var universe = new UniverseAdapter(3, 3, false);
         var actual = universe.GetLivingNeighbors(1, 1);
@@ -94,7 +94,7 @@ public class UniverseTest
     [InlineData(2, 0)]
     [InlineData(2, 1)]
     [InlineData(2, 2)]
-    public void CountNeighborsForCenterCellIn3x3WithOneAliveCell(
+    public void CountLivingNeighborsForCenterCellIn3x3WithOneAliveCell(
         int rowOfAliveCell,
         int columnOfAliveCell
     )
@@ -113,7 +113,7 @@ public class UniverseTest
     [InlineData(2, 0)]
     [InlineData(2, 1)]
     [InlineData(2, 2)]
-    public void CountNeighborsForCenterCellIn3x3WithTwoAliveCells(
+    public void CountLivingNeighborsForCenterCellIn3x3WithTwoAliveCells(
         int rowOfAliveCell,
         int columnOfAliveCell
     )
@@ -126,7 +126,7 @@ public class UniverseTest
     }
 
     [Fact]
-    public void CountNeighborsForCenterCellIn3x3WithAllAliveCells()
+    public void CountLivingNeighborsForCenterCellIn3x3WithAllAliveCells()
     {
         var universe = new UniverseAdapter(3, 3, true);
         var actual = universe.GetLivingNeighbors(1, 1);
@@ -134,7 +134,7 @@ public class UniverseTest
     }
 
     [Fact]
-    public void CountNeighborsForCenterCellIn3x3WithOnlyCenterCellAlive()
+    public void CountLivingNeighborsForCenterCellIn3x3WithOnlyCenterCellAlive()
     {
         var universe = new UniverseAdapter(3, 3, false);
         universe.MakeAlive(1, 1);
@@ -155,7 +155,7 @@ public class UniverseTest
     [InlineData(1, 0, 0)]
     [InlineData(2, 0, 0)]
     [InlineData(2, 2, 1)]
-    public void CountNeighborsForRightCenterCellIn3x4WithNoAliveCells(
+    public void CountLivingNeighborsForRightCenterCellIn3x4WithNoAliveCells(
         int rowOfAliveCell,
         int columnOfAliveCell,
         int expected
@@ -172,7 +172,7 @@ public class UniverseTest
     [InlineData(0, 1)]
     [InlineData(1, 0)]
     [InlineData(1, 1)]
-    public void CountNeigborsOfCornerCellWith3AliveCells(int rowOfInterest, int columnOfInterest)
+    public void CountLivingNeighborsOfCornerCellWith3AliveCells(int rowOfInterest, int columnOfInterest)
     {
         var universe = new UniverseAdapter(2, 2, true);
         var actual = universe.GetLivingNeighbors(rowOfInterest, columnOfInterest);
