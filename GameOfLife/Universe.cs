@@ -4,6 +4,8 @@ namespace GameOfLife;
 
 public class Universe
 {
+    private readonly int _rows;
+    private readonly int _columns;
     protected readonly Cell[,] Cells;
 
     // csharpier-ignore
@@ -16,10 +18,12 @@ public class Universe
 
     public Universe(int rows, int columns, bool cellsAliveAtInitialization)
     {
-        Cells = new Cell[rows, columns];
-        for (var row = 0; row < rows; row++)
+        _rows = rows;
+        _columns = columns;
+        Cells = new Cell[_rows, _columns];
+        for (var row = 0; row < _rows; row++)
         {
-            for (var column = 0; column < columns; column++)
+            for (var column = 0; column < _columns; column++)
             {
                 Cells[row, column] = new Cell(cellsAliveAtInitialization);
             }
@@ -28,8 +32,16 @@ public class Universe
 
     public void Iterate()
     {
-        bool nextState = Cells[0, 0].WillBeAliveInNextIncarnation(CountLivingNeighbors(0, 0));
-        Cells[0, 0] = new Cell(nextState);
+        for (var row = 0; row < _rows; row++)
+        {
+            for (var column = 0; column < _columns; column++)
+            {
+                var nextState = Cells[row, column].WillBeAliveInNextIncarnation(
+                    CountLivingNeighbors(row, column)
+                );
+                Cells[row, column] = new Cell(nextState);
+            }
+        }
     }
 
     protected int CountLivingNeighbors(int row, int column)
