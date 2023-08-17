@@ -30,6 +30,8 @@ public class Universe
         }
     }
 
+    public int CellsLength => Cells.Length;
+
     public void Iterate()
     {
         for (var row = 0; row < _rows; row++)
@@ -70,8 +72,11 @@ public class Universe
             && columnToCheck < Cells.GetLength(1);
     }
 
-    protected void MakeAlive(int row, int column)
+    public void MakeAlive(int row, int column)
     {
         Cells[row, column] = new Cell(true);
     }
+
+    public Cell CellAt(int row, int column) => Cells[row, column];
+    public int GetLivingNeighbors(int row, int column) => CountLivingNeighbors(row, column);
 }
