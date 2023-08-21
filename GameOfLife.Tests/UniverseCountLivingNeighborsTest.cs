@@ -12,7 +12,7 @@ public class UniverseCountLivingNeighborsTest
         int columnOfTestedCell
     )
     {
-        var universe = new UniverseAdapter(2, 1, true);
+        var universe = new Universe(2, 1, true);
         var actual = universe.GetLivingNeighbors(rowOfTestedCell, columnOfTestedCell);
         Assert.Equal(1, actual);
     }
@@ -20,7 +20,7 @@ public class UniverseCountLivingNeighborsTest
     [Fact]
     public void CountLivingNeighborsForCenterCellIn3x3DeadCells()
     {
-        var universe = new UniverseAdapter(3, 3, false);
+        var universe = new Universe(3, 3, false);
         var actual = universe.GetLivingNeighbors(1, 1);
         Assert.Equal(0, actual);
     }
@@ -39,7 +39,7 @@ public class UniverseCountLivingNeighborsTest
         int columnOfAliveCell
     )
     {
-        var universe = new UniverseAdapter(3, 3, false);
+        var universe = new Universe(3, 3, false);
         universe.MakeAlive(rowOfAliveCell, columnOfAliveCell);
         var actual = universe.GetLivingNeighbors(1, 1);
         Assert.Equal(1, actual);
@@ -58,7 +58,7 @@ public class UniverseCountLivingNeighborsTest
         int columnOfAliveCell
     )
     {
-        var universe = new UniverseAdapter(3, 3, false);
+        var universe = new Universe(3, 3, false);
         universe.MakeAlive(rowOfAliveCell, columnOfAliveCell);
         universe.MakeAlive(0, 0);
         var actual = universe.GetLivingNeighbors(1, 1);
@@ -68,7 +68,7 @@ public class UniverseCountLivingNeighborsTest
     [Fact]
     public void CountLivingNeighborsForCenterCellIn3x3WithAllAliveCells()
     {
-        var universe = new UniverseAdapter(3, 3, true);
+        var universe = new Universe(3, 3, true);
         var actual = universe.GetLivingNeighbors(1, 1);
         Assert.Equal(8, actual);
     }
@@ -76,7 +76,7 @@ public class UniverseCountLivingNeighborsTest
     [Fact]
     public void CountLivingNeighborsForCenterCellIn3x3WithOnlyCenterCellAlive()
     {
-        var universe = new UniverseAdapter(3, 3, false);
+        var universe = new Universe(3, 3, false);
         universe.MakeAlive(1, 1);
         var actual = universe.GetLivingNeighbors(1, 1);
         Assert.Equal(0, actual);
@@ -93,7 +93,7 @@ public class UniverseCountLivingNeighborsTest
         int expected
     )
     {
-        var universe = new UniverseAdapter(3, 4, false);
+        var universe = new Universe(3, 4, false);
         universe.MakeAlive(rowOfAliveCell, columnOfAliveCell);
         var actual = universe.GetLivingNeighbors(1, 2);
         Assert.Equal(expected, actual);
@@ -109,7 +109,7 @@ public class UniverseCountLivingNeighborsTest
         int columnOfInterest
     )
     {
-        var universe = new UniverseAdapter(2, 2, true);
+        var universe = new Universe(2, 2, true);
         var actual = universe.GetLivingNeighbors(rowOfInterest, columnOfInterest);
         Assert.Equal(3, actual);
     }

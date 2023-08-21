@@ -7,7 +7,7 @@ public class UniverseLifecycleTest
     [Fact(DisplayName = "Rule 1 - 1x1 Universe - cell dies")]
     public void Rule1_1x1_CellAlwaysDies()
     {
-        var universe = new UniverseAdapter(1, 1, true);
+        var universe = new Universe(1, 1, true);
         universe.Iterate();
         Assert.False(universe.CellAt(0, 0).IsAlive());
     }
@@ -17,7 +17,7 @@ public class UniverseLifecycleTest
     )]
     public void Rule1_3x3_CenterCellWith_0_LivingNeighborsDies()
     {
-        var universe = new UniverseAdapter(3, 3, false);
+        var universe = new Universe(3, 3, false);
         universe.MakeAlive(1, 1);
         universe.Iterate();
         Assert.False(universe.CellAt(1, 1).IsAlive());
@@ -28,7 +28,7 @@ public class UniverseLifecycleTest
     )]
     public void Rule1_3x3_CenterCellWith_1_LivingNeighborDies()
     {
-        var universe = new UniverseAdapter(3, 3, false);
+        var universe = new Universe(3, 3, false);
         universe.MakeAlive(1, 1);
         universe.MakeAlive(0, 0);
         universe.Iterate();
@@ -40,7 +40,7 @@ public class UniverseLifecycleTest
     )]
     public void Rule1_3x3_CellAtEdgeWith_0_LivingNeighborsDies()
     {
-        var universe = new UniverseAdapter(3, 3, false);
+        var universe = new Universe(3, 3, false);
         universe.MakeAlive(2, 0);
         universe.Iterate();
         Assert.False(universe.CellAt(2, 0).IsAlive());
