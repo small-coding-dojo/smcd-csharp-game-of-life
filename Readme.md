@@ -26,6 +26,15 @@
 
 This has been verified on 2023-07-10 18:00.
 
+## Team agreements on developing tooling
+ - IDE
+   - Our standard IDE is Rider for C#
+   - we also agree on using VisualStudio Code
+ - we use sonarlint to ensure sourcecode policy
+ - we use csharpier for sourcecode formatting
+ - we use the latest stable LTS of .NET
+ - we use the [mob tool](https://mob.sh)
+
 ## Links
  - https://playgameoflife.com/
  - https://kata-log.rocks/game-of-life-kata
