@@ -76,9 +76,9 @@ namespace GameOfLife.Tests
         [InlineData(6)]
         [InlineData(7)]
         [InlineData(8)]
-        public void Rule5_DeadCellWillStayDeadWithTwoNeighbors(int numberOfAliveNeigbours)
+        public void Rule5_DeadCellWillStayDeadWithTwoNeighbors(int numberOfAliveNeighbors)
         {
-            Assert.False(_deadCell.WillBeAliveInNextIncarnation(numberOfAliveNeigbours));
+            Assert.False(_deadCell.WillBeAliveInNextIncarnation(numberOfAliveNeighbors));
         }
     }
 }

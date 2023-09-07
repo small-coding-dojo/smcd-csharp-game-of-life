@@ -6,10 +6,10 @@ public class Universe
 {
     private readonly int _rows;
     private readonly int _columns;
-    protected readonly Cell[,] Cells;
+    private readonly Cell[,] _cells;
 
     // csharpier-ignore
-    private readonly List<(int, int)> relativeCoordinateOfNeighbor = new ()
+    private readonly List<(int, int)> _relativeCoordinateOfNeighbor = new ()
     {
         (-1, -1), (-1, 0), (-1, 1),
         ( 0, -1),          ( 0, 1),
@@ -20,17 +20,17 @@ public class Universe
     {
         _rows = rows;
         _columns = columns;
-        Cells = new Cell[_rows, _columns];
+        _cells = new Cell[_rows, _columns];
         for (var row = 0; row < _rows; row++)
         {
             for (var column = 0; column < _columns; column++)
             {
-                Cells[row, column] = new Cell(cellsAliveAtInitialization);
+                _cells[row, column] = new Cell(cellsAliveAtInitialization);
             }
         }
     }
 
-    public int CellsLength => Cells.Length;
+    public int CellsLength => _cells.Length;
 
     public void Iterate()
     {
@@ -38,26 +38,26 @@ public class Universe
         {
             for (var column = 0; column < _columns; column++)
             {
-                var nextState = Cells[row, column].WillBeAliveInNextIncarnation(
+                var nextState = _cells[row, column].WillBeAliveInNextIncarnation(
                     CountLivingNeighbors(row, column)
                 );
-                Cells[row, column] = new Cell(nextState);
+                _cells[row, column] = new Cell(nextState);
             }
         }
     }
 
-    protected int CountLivingNeighbors(int row, int column)
+    private int CountLivingNeighbors(int row, int column)
     {
         var counter = 0;
 
-        foreach ((var rowNeighbor, var columnNeighbor) in relativeCoordinateOfNeighbor)
+        foreach (var (rowNeighbor, columnNeighbor) in _relativeCoordinateOfNeighbor)
         {
             var rowToCheck = row + rowNeighbor;
             var columnToCheck = column + columnNeighbor;
 
             if (IsCellInUniverse(rowToCheck, columnToCheck))
             {
-                counter += Cells[rowToCheck, columnToCheck].IsAlive() ? 1 : 0;
+                counter += _cells[rowToCheck, columnToCheck].IsAlive() ? 1 : 0;
             }
         }
 
@@ -68,15 +68,16 @@ public class Universe
     {
         return rowToCheck >= 0
             && columnToCheck >= 0
-            && rowToCheck < Cells.GetLength(0)
-            && columnToCheck < Cells.GetLength(1);
+            && rowToCheck < _cells.GetLength(0)
+            && columnToCheck < _cells.GetLength(1);
     }
 
     public void MakeAlive(int row, int column)
     {
-        Cells[row, column] = new Cell(true);
+        _cells[row, column] = new Cell(true);
     }
 
-    public Cell CellAt(int row, int column) => Cells[row, column];
+    public Cell CellAt(int row, int column) => _cells[row, column];
+
     public int GetLivingNeighbors(int row, int column) => CountLivingNeighbors(row, column);
 }
