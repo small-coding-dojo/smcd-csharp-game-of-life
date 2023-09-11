@@ -1,0 +1,5 @@
+tasks:
+ - name: install mob tool
+   init: |
+    curl -sL install.mob.sh | sudo sh
+   
