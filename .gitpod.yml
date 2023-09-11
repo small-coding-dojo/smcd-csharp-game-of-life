@@ -3,5 +3,10 @@ tasks:
    init: |
     curl -sL install.mob.sh | sudo sh
  - name: run sonarqube (docker)
-   command: |
-    docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+   init: docker-compose pull
+   command: docker-compose up -d
+
+ports:
+  - port: 9000
+    onOpen: open-browser
+    
