@@ -1,3 +1,5 @@
+image: gitpod/workspace-dotnet
+
 tasks:
  - name: install mob tool
    init: |
