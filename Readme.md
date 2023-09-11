@@ -6,6 +6,15 @@
 - run the tests with ``dotnet test``
 - prerequisites: installed .NET framework version 3 or greater rool
 
+## GitPod
+[![Open This Repo in GitPod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/from-referrer)
+
+At the start of the gitpod workspace , a popup window with sonarqube opens
+  
+You can open this window manually by opening the ports tab in the terminal panel of VS Code and clicking the adress of the port 9000.
+  
+The initial password for sonarqube is admin/admin, requiring to change the password at first login.
+
 ## Goal of the Project
 - learn coding
 - having fun :)
@@ -39,3 +48,11 @@ This has been verified on 2023-07-10 18:00.
  - https://playgameoflife.com/
  - https://kata-log.rocks/game-of-life-kata
  - https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
+ - SonarQube
+    - https://docs.sonarsource.com/sonarqube/latest/try-out-sonarqube/
+
+ - Gitpod:
+    - https://www.gitpod.io/docs/introduction
+    - https://github.com/gitpod-samples/template-docker-compose/blob/main/.gitpod.yml
+    - https://www.gitpod.io/docs/introduction/languages/dotnet
