@@ -15,6 +15,10 @@ public static class UniverseBuilder
         {
             return new Universe(1, 1, true);
         }
+        else if (stringRepresentation == ".")
+        {
+            return new Universe(1, 1, false);
+        }
         return new Universe(0, 0, false);
     }
 }
