@@ -36,4 +36,20 @@ public class UniverseBuilderTest
         Assert.Throws<IndexOutOfRangeException>(() => (universe.CellAt(0, -1)));
         Assert.Throws<IndexOutOfRangeException>(() => (universe.CellAt(0, 1)));
     }
+
+    [Fact]
+    public void Build1X2UniverseWithTwoDeadCells()
+    {
+        var universe = UniverseBuilder.Build("..");
+        Assert.Equal(2, universe.CellsLength);
+        Assert.False(universe.CellAt(0, 0).IsAlive());
+        Assert.False(universe.CellAt(0, 1).IsAlive());
+        Assert.Throws<IndexOutOfRangeException>(() => (universe.CellAt(-1, 0)));
+        Assert.Throws<IndexOutOfRangeException>(() => (universe.CellAt(-1, 1)));
+        Assert.Throws<IndexOutOfRangeException>(() => (universe.CellAt(1, 0)));
+        Assert.Throws<IndexOutOfRangeException>(() => (universe.CellAt(1, 1)));
+        Assert.Throws<IndexOutOfRangeException>(() => (universe.CellAt(0, -1)));
+        Assert.Throws<IndexOutOfRangeException>(() => (universe.CellAt(0, 2)));
+    }
+
 }
