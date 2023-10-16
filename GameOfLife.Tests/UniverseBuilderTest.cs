@@ -12,9 +12,10 @@ public class UniverseBuilderTest
     }
 
     [Fact]
-    public void Build1X1Universe()
+    public void Build1X1UniverseWithAnAliveCell()
     {
         var universe = UniverseBuilder.Build("O");
         Assert.Equal(1, universe.CellsLength);
+        Assert.True(universe.CellAt(0, 0).IsAlive());
     }
 }
