@@ -13,16 +13,21 @@ public static class UniverseBuilder
         // ReSharper disable once ConvertIfStatementToReturnStatement
         if (stringRepresentation == "O")
         {
-            return new Universe(1, 1, true);
+            return new Universe(1, 1, desiredCellState(stringRepresentation[0]));
         }
         else if (stringRepresentation == ".")
         {
-            return new Universe(1, 1, false);
+            return new Universe(1, 1, desiredCellState(stringRepresentation[0]));
         }
         else if (stringRepresentation == "..")
         {
             return new Universe(1, 2, false);
         }
         return new Universe(0, 0, false);
+    }
+
+    public static bool desiredCellState (char input)
+    {
+        return input == 'O' ? true : false;
     }
 }
